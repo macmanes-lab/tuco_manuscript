@@ -1,0 +1,419 @@
+-------------------------------------------------------------------------------------------------------
+#Assembly Analysis, BUSCO and TransRate
+
+#Hippocampus
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies/tuco_hippocampus.assembly.trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_hippocampus.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_hippocampus.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_hippocampus
+TRANSRATEOUT :=TRANSRATE_hippocampus
+
+all:/data/andrew/analysis/run_BUSCO_hippocampus /data/andrew/analysis/TRANSRATE_hippocampus
+
+/data/andrew/analysis/run_BUSCO_hippocampus:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_hippocampus:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Hypothalamus
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies/tuco_hypothalamus.assembly.trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_hypothalamus.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_hypothalamus.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_hypothalamus
+TRANSRATEOUT :=TRANSRATE_hypothalamus
+
+all:/data/andrew/analysis/run_BUSCO_hypothalamus /data/andrew/analysis/TRANSRATE_hypothalamus
+
+/data/andrew/analysis/run_BUSCO_hypothalamus:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_hypothalamus:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+        
+#Kidney
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies/tuco_kidney.assembly.trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_kidney.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_kidney.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_kidney
+TRANSRATEOUT :=TRANSRATE_kidney
+
+all:/data/andrew/analysis/run_BUSCO_kidney /data/andrew/analysis/TRANSRATE_kidney
+
+/data/andrew/analysis/run_BUSCO_kidney:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_kidney:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Liver
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies/tuco_liver.assembly.trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_liver.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_liver.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_liver
+TRANSRATEOUT :=TRANSRATE_liver
+
+all:/data/andrew/analysis/run_BUSCO_liver /data/andrew/analysis/TRANSRATE_liver
+
+/data/andrew/analysis/run_BUSCO_liver:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_liver:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Ovary
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies/tuco_ovary.assembly.trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_ovary.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_ovary.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_ovary
+TRANSRATEOUT :=TRANSRATE_ovary
+
+all:/data/andrew/analysis/run_BUSCO_ovary /data/andrew/analysis/TRANSRATE_ovary
+
+/data/andrew/analysis/run_BUSCO_ovary:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_ovary:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Skin
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies/tuco_skin.assembly.trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_skin.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_skin.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_skin
+TRANSRATEOUT :=TRANSRATE_skin
+
+all:/data/andrew/analysis/run_BUSCO_skin /data/andrew/analysis/TRANSRATE_skin
+
+/data/andrew/analysis/run_BUSCO_skin:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_skin:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Spleen
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies/tuco_spleen.assembly.trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_spleen.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_spleen.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_spleen
+TRANSRATEOUT :=TRANSRATE_spleen
+
+all:/data/andrew/analysis/run_BUSCO_spleen /data/andrew/analysis/TRANSRATE_spleen
+
+/data/andrew/analysis/run_BUSCO_spleen:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_spleen:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Testes
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies/tuco_testes.assembly.trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_testes.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_testes.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_testes
+TRANSRATEOUT :=TRANSRATE_testes
+
+all:/data/andrew/analysis/run_BUSCO_testes /data/andrew/analysis/TRANSRATE_testes
+
+/data/andrew/analysis/run_BUSCO_testes:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_testes:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+-------------------------------------------------------------------------------------------------------
+#Normalized Assembly Analysis, BUSCO and TransRate
+
+#Hippocampus_norm.mk
+ 
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies_norm/tuco_hippocampus.norm_trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_hippocampus.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_hippocampus.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_hippocampus.norm
+TRANSRATEOUT :=TRANSRATE_hippocampus.norm
+
+all:/data/andrew/analysis/run_BUSCO_hippocampus.norm /data/andrew/analysis/TRANSRATE_hippocampus.norm
+
+/data/andrew/analysis/run_BUSCO_hippocampus.norm:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_hippocampus.norm:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Hypothalamus_norm.mk
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies_norm/tuco_hypothalamus.norm_trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_hypothalamus.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_hypothalamus.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_hypothalamus.norm
+TRANSRATEOUT :=TRANSRATE_hypothalamus.norm
+
+all:/data/andrew/analysis/run_BUSCO_hypothalamus.norm /data/andrew/analysis/TRANSRATE_hypothalamus.norm
+
+/data/andrew/analysis/run_BUSCO_hypothalamus.norm:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_hypothalamus.norm:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Kidney_norm.mk
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies_norm/tuco_kidney.norm_trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_kidney.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_kidney.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_kidney.norm
+TRANSRATEOUT :=TRANSRATE_kidney.norm
+
+all:/data/andrew/analysis/run_BUSCO_kidney.norm /data/andrew/analysis/TRANSRATE_kidney.norm
+
+/data/andrew/analysis/run_BUSCO_kidney.norm:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_kidney.norm:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+	
+#Liver_norm.mk
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies_norm/tuco_liver.norm_trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_liver.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_liver.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_liver.norm
+TRANSRATEOUT :=TRANSRATE_liver.norm
+
+all:/data/andrew/analysis/run_BUSCO_liver.norm /data/andrew/analysis/TRANSRATE_liver.norm
+
+/data/andrew/analysis/run_BUSCO_liver.norm:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_liver.norm:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+	
+#Ovary_norm.mk
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies_norm/tuco_ovary.norm_trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_ovary.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_ovary.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_ovary.norm
+TRANSRATEOUT :=TRANSRATE_ovary.norm
+
+all:/data/andrew/analysis/run_BUSCO_ovary.norm /data/andrew/analysis/TRANSRATE_ovary.norm
+
+/data/andrew/analysis/run_BUSCO_ovary.norm:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_ovary.norm:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Skin_norm.mk
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies_norm/tuco_skin.norm_trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_skin.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_skin.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_skin.norm
+TRANSRATEOUT :=TRANSRATE_skin.norm
+
+all:/data/andrew/analysis/run_BUSCO_skin.norm /data/andrew/analysis/TRANSRATE_skin.norm
+
+/data/andrew/analysis/run_BUSCO_skin.norm:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_skin.norm:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+Spleen_norm.mk
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies_norm/tuco_spleen.norm_trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_spleen.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_spleen.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_spleen.norm
+TRANSRATEOUT :=TRANSRATE_spleen.norm
+
+all:/data/andrew/analysis/run_BUSCO_spleen.norm /data/andrew/analysis/TRANSRATE_spleen.norm
+
+/data/andrew/analysis/run_BUSCO_spleen.norm:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_spleen.norm:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+#Testes_norm.mk
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/individual_assemblies_norm/tuco_testes.norm_trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_testes.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_testes.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_testes.norm
+TRANSRATEOUT :=TRANSRATE_testes.norm
+
+all:/data/andrew/analysis/run_BUSCO_testes.norm /data/andrew/analysis/TRANSRATE_testes.norm
+
+/data/andrew/analysis/run_BUSCO_testes.norm:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_testes.norm:${ASSEMBLY}
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+-------------------------------------------------------------------------------------------------------
+#Compiled assembly analysis
+
+SHELL=/bin/bash -o pipefail
+MAKEDIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DIR := ${CURDIR}
+BUSCO ?= ${shell which BUSCO_v1.1b1.py}
+BUSCODIR := $(dir $(firstword $(BUSCO)))
+CPU=16
+ASSEMBLY=/data/andrew/tuco_compiled_trinity.Trinity.fasta
+READ1=/data/andrew/reads_corrected/tuco_hippocampus.1.cor.fq,/data/andrew/reads_corrected/tuco_hypothalamus.1.cor.fq,/data/andrew/reads_corrected/tuco_kidney.1.cor.fq,/data/andrew/reads_corrected/tuco_liver.1.cor.fq,/data/andrew/reads_corrected/tuco_ovary.1.cor.fq,/data/andrew/reads_corrected/tuco_skin.1.cor.fq,/data/andrew/reads_corrected/tuco_spleen.1.cor.fq,/data/andrew/reads_corrected/tuco_testes.1.cor.fq
+READ2=/data/andrew/reads_corrected/tuco_hippocampus.2.cor.fq,/data/andrew/reads_corrected/tuco_hypothalamus.2.cor.fq,/data/andrew/reads_corrected/tuco_kidney.2.cor.fq,/data/andrew/reads_corrected/tuco_liver.2.cor.fq,/data/andrew/reads_corrected/tuco_ovary.2.cor.fq,/data/andrew/reads_corrected/tuco_skin.2.cor.fq,/data/andrew/reads_corrected/tuco_spleen.2.cor.fq,/data/andrew/reads_corrected/tuco_testes.2.cor.fq
+LINEAGE=vertebrata
+BUSCOUT :=BUSCO_tuco_compiled
+TRANSRATEOUT :=TRANSRATE_tuco_compiled
+
+all:/data/andrew/analysis/run_BUSCO_tuco_compiled /data/andrew/analysis/TRANSRATE_tuco_compiled
+
+/data/andrew/analysis/run_BUSCO_tuco_compiled:${ASSEMBLY}
+	python3 ${BUSCODIR}BUSCO_v1.1b1.py -in ${ASSEMBLY} -m trans --cpu $(CPU) -l ${BUSCODIR}${LINEAGE} -o ${BUSCOUT}
+
+/data/andrew/analysis/TRANSRATE_tuco_compiled:${ASSEMBLY} 
+	transrate -o ${TRANSRATEOUT} -a ${ASSEMBLY} --left ${READ1} --right ${READ2} -t $(CPU)
+
+-------------------------------------------------------------------------------------------------------
+#Run BUSCO on Transrate good.fasta individual assemblies to determine completeness
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/analysis/TRANSRATE_hippocampus/tuco_hippocampus.assembly.trinity.Trinity/good.tuco_hippocampus.assembly.trinity.Trinity.fasta -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o BUSCO_hippocampus_good
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/analysis/TRANSRATE_hypothalamus/tuco_hypothalamus.assembly.trinity.Trinity/good.tuco_hypothalamus.assembly.trinity.Trinity.fasta -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o BUSCO_hypothalamus_good
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/analysis/TRANSRATE_kidney/tuco_kidney.assembly.trinity.Trinity/good.tuco_kidney.assembly.trinity.Trinity.fasta -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o BUSCO_kidney_good
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/analysis/TRANSRATE_liver/tuco_liver.assembly.trinity.Trinity/good.tuco_liver.assembly.trinity.Trinity.fasta -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o BUSCO_liver_good
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/analysis/TRANSRATE_ovary/tuco_ovary.assembly.trinity.Trinity/good.tuco_ovary.assembly.trinity.Trinity.fasta -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o BUSCO_ovary_good
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/analysis/TRANSRATE_skin/tuco_skin.assembly.trinity.Trinity/good.tuco_skin.assembly.trinity.Trinity.fasta -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o BUSCO_skin_good
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/analysis/TRANSRATE_spleen/tuco_spleen.assembly.trinity.Trinity/good.tuco_spleen.assembly.trinity.Trinity.fasta -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o BUSCO_spleen_good
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/analysis/TRANSRATE_testes/tuco_testes.assembly.trinity.Trinity/good.tuco_testes.assembly.trinity.Trinity.fasta -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o BUSCO_testes_good
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/TRANSRATE_tuco_compiled/tuco_compiled_trinity.Trinity/good.tuco_compiled_trinity.Trinity.fasta -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o BUSCO_tuco_compiled_good
+
