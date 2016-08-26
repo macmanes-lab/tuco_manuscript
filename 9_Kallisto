@@ -1,0 +1,19 @@
+#Run Kallisto for each tissue on annotated.only assembly 
+
+kallisto index -i kallisto_tuco_annotated_only.idx /data/andrew/tuco_final_assembly/assembly_trimmed/tuco_final_assembly_annotation_only.fasta
+
+kallisto quant -t 20 -i kallisto_tuco_annotated_only.idx -o kallisto_tuco_annotated_only_hippocampus /data/andrew/reads_corrected/tuco_hippocampus.1.cor.fq.gz /data/andrew/reads_corrected/tuco_hippocampus.2.cor.fq.gz
+
+kallisto quant -t 20 -i kallisto_tuco_annotated_only.idx -o kallisto_tuco_annotated_only_hypothalamus /data/andrew/reads_corrected/tuco_hypothalamus.1.cor.fq.gz /data/andrew/reads_corrected/tuco_hypothalamus.2.cor.fq.gz
+
+kallisto quant -t 20 -i kallisto_tuco_annotated_only.idx -o kallisto_tuco_annotated_only_kidney /data/andrew/reads_corrected/tuco_kidney.1.cor.fq.gz /data/andrew/reads_corrected/tuco_kidney.2.cor.fq.gz
+
+kallisto quant -t 20 -i kallisto_tuco_annotated_only.idx -o kallisto_tuco_annotated_only_liver /data/andrew/reads_corrected/tuco_liver.1.cor.fq.gz /data/andrew/reads_corrected/tuco_liver.2.cor.fq.gz
+
+kallisto quant -t 20 -i kallisto_tuco_annotated_only.idx -o kallisto_tuco_annotated_only_ovary /data/andrew/reads_corrected/tuco_ovary.1.cor.fq.gz /data/andrew/reads_corrected/tuco_ovary.2.cor.fq.gz
+
+kallisto quant -t 20 -i kallisto_tuco_annotated_only.idx -o kallisto_tuco_annotated_only_skin /data/andrew/reads_corrected/tuco_skin.1.cor.fq.gz /data/andrew/reads_corrected/tuco_skin.2.cor.fq.gz
+
+kallisto quant -t 20 -i kallisto_tuco_annotated_only.idx -o kallisto_tuco_annotated_only_spleen /data/andrew/reads_corrected/tuco_spleen.1.cor.fq.gz /data/andrew/reads_corrected/tuco_spleen.2.cor.fq.gz
+
+kallisto quant -t 20 -i kallisto_tuco_annotated_only.idx -o kallisto_tuco_annotated_only_testes /data/andrew/reads_corrected/tuco_testes.1.cor.fq.gz /data/andrew/reads_corrected/tuco_testes.2.cor.fq.gz
