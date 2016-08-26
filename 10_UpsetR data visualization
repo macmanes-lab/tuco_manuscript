@@ -1,0 +1,45 @@
+#Generate abundance matrix makefile
+
+SHELL=/bin/bash -o pipefail
+tissue=
+
+all: kal_${tissue}.tpm.txt kal_first.column.txt
+
+kal_${tissue}.tpm.txt:
+        awk '{print $$5}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/kallisto_tuco_annotated_only_${tissue}/abundance.tsv | sed s/\tpm/${tissue}/g > kal_${tissue}.tpm.txt
+       
+kal_first.column.txt:
+	awk '{print $$1}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/kallisto_tuco_annotated_only_hippocampus/abundance.tsv > kal_first.column.txt  
+	            
+paste kal_first.column.txt kal_hippocampus.tpm.txt kal_hypothalamus.tpm.txt kal_kidney.tpm.txt kal_liver.tpm.txt kal_ovary.tpm.txt kal_skin.tpm.txt kal_spleen.tpm.txt kal_testes.tpm.txt > tuco_abundance_matrix.tsv
+
+______________________________________________________________________________________________________________________________
+
+#Isolate unique transcripts by tissue
+
+awk '$2!=0 && $3==0 && $4==0 && $5==0 && $6==0 && $7==0 && $8==0 && $9==0 {print$0}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/tuco_abundance_matrix.tsv > hippocampus.unique.txt
+awk '$2==0 && $3!=0 && $4==0 && $5==0 && $6==0 && $7==0 && $8==0 && $9==0 {print$0}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/tuco_abundance_matrix.tsv > hypothalamus.unique.txt
+awk '$2==0 && $3==0 && $4!=0 && $5==0 && $6==0 && $7==0 && $8==0 && $9==0 {print$0}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/tuco_abundance_matrix.tsv > kidney.unique.txt
+awk '$2==0 && $3==0 && $4==0 && $5!=0 && $6==0 && $7==0 && $8==0 && $9==0 {print$0}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/tuco_abundance_matrix.tsv > liver.unique.txt
+awk '$2==0 && $3==0 && $4==0 && $5==0 && $6!=0 && $7==0 && $8==0 && $9==0 {print$0}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/tuco_abundance_matrix.tsv > ovary.unique.txt
+awk '$2==0 && $3==0 && $4==0 && $5==0 && $6==0 && $7!=0 && $8==0 && $9==0 {print$0}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/tuco_abundance_matrix.tsv > skin.unique.txt
+awk '$2==0 && $3==0 && $4==0 && $5==0 && $6==0 && $7==0 && $8!=0 && $9==0 {print$0}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/tuco_abundance_matrix.tsv > spleen.unique.txt
+awk '$2==0 && $3==0 && $4==0 && $5==0 && $6==0 && $7==0 && $8==0 && $9!=0 {print$0}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/tuco_abundance_matrix.tsv > testes.unique.txt
+awk '$2!=0 && $3!=0 && $4!=0 && $5!=0 && $6!=0 && $7!=0 && $8!=0 && $9!=0 {print$0}' /data/andrew/tuco_final_assembly/assembly_trimmed/kallisto/tuco_abundance_matrix.tsv > shared.by.all.txt 
+
+______________________________________________________________________________________________________________________________
+#Upset file preparation. I imported the tuco_abundance_matrix.tsv into excel, changed all TPMs>1 to 1, and everything below 1 to 0, then brought that back onto server as upset_matrix_annotated.tsv, and pulled out all transcripts present in each tissue*
+
+awk '$1 == "target_id" {print $0}' upset_matrix_annotated.tsv > hippocampus.upset.annotated.tsv | awk '$2 != 0 {print $0}' upset_matrix_annotated.tsv >> hippocampus.upset.annotated.tsv
+awk '$1 == "target_id" {print $0}' upset_matrix_annotated.tsv > hypothalamus.upset.annotated.tsv | awk '$3 != 0 {print $0}' upset_matrix_annotated.tsv >> hypothalamus.upset.annotated.tsv
+awk '$1 == "target_id" {print $0}' upset_matrix_annotated.tsv > kidney.upset.annotated.tsv | awk '$4 != 0 {print $0}' upset_matrix_annotated.tsv >> kidney.upset.annotated.tsv
+awk '$1 == "target_id" {print $0}' upset_matrix_annotated.tsv > liver.upset.annotated.tsv | awk '$5 != 0 {print $0}' upset_matrix_annotated.tsv >> liver.upset.annotated.tsv
+awk '$1 == "target_id" {print $0}' upset_matrix_annotated.tsv > ovary.upset.annotated.tsv | awk '$6 != 0 {print $0}' upset_matrix_annotated.tsv >> ovary.upset.annotated.tsv
+awk '$1 == "target_id" {print $0}' upset_matrix_annotated.tsv > skin.upset.annotated.tsv | awk '$7 != 0 {print $0}' upset_matrix_annotated.tsv >> skin.upset.annotated.tsv
+awk '$1 == "target_id" {print $0}' upset_matrix_annotated.tsv > spleen.upset.annotated.tsv | awk '$8 != 0 {print $0}' upset_matrix_annotated.tsv >> spleen.upset.annotated.tsv
+awk '$1 == "target_id" {print $0}' upset_matrix_annotated.tsv > testes.upset.annotated.tsv | awk '$9 != 0 {print $0}' upset_matrix_annotated.tsv >> testes.upset.annotated.tsv
+
+______________________________________________________________________________________________________________________________
+
+#The command I used in UpsetR
+upset(tuco_hippocampus, order.by = "freq", nsets = 8, nintersects = 256, point.size = 2, line.size = .7, show.numbers = "no", mb.ratio = c(0.65, 0.35), scale.intersections = "log10", matrix.color = "black", shade.color = "black", shade.alpha = 0.1, , sets.bar.color = "blue", main.bar.color = "skyblue", name.size = 9)
