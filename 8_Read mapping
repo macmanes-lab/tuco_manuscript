@@ -1,0 +1,75 @@
+#Mapping raw reads to annotated assembly to ensure this is representative of individual read datasets
+
+bwa index -p index_final_assembly /data/andrew/tuco_final_assembly/tuco_final_assembly.annotated.fasta
+
+bwa mem -t16 index_final_assembly /data/andrew/reads_corrected/tuco_hippocampus.1.cor.fq /data/andrew/reads_corrected/tuco_hippocampus.2.cor.fq > hippocampus_alignment_final.sam
+samtools view -Sb -o hippocampus_alignment_final_BAM hippocampus_alignment_final.sam 
+
+bwa mem -t16 index_final_assembly /data/andrew/reads_corrected/tuco_hypothalamus.1.cor.fq /data/andrew/reads_corrected/tuco_hypothalamus.2.cor.fq > hypothalamus_alignment_final.sam
+samtools view -Sb -o hypothalamus_alignment_final_BAM hypothalamus_alignment_final.sam 
+
+bwa mem -t16 index_final_assembly /data/andrew/reads_corrected/tuco_kidney.1.cor.fq /data/andrew/reads_corrected/tuco_kidney.2.cor.fq > kidney_alignment_final.sam
+samtools view -Sb -o kidney_alignment_final_BAM kidney_alignment_final.sam 
+
+bwa mem -t16 index_final_assembly /data/andrew/reads_corrected/tuco_liver.1.cor.fq /data/andrew/reads_corrected/tuco_liver.2.cor.fq > liver_alignment_final.sam
+samtools view -Sb -o liver_alignment_final_BAM liver_alignment_final.sam 
+
+bwa mem -t16 index_final_assembly /data/andrew/reads_corrected/tuco_ovary.1.cor.fq /data/andrew/reads_corrected/tuco_ovary.2.cor.fq > ovary_alignment_final.sam
+samtools view -Sb -o ovary_alignment_final_BAM ovary_alignment_final.sam 
+
+bwa mem -t16 index_final_assembly /data/andrew/reads_corrected/tuco_skin.1.cor.fq /data/andrew/reads_corrected/tuco_skin.2.cor.fq > skin_alignment_final.sam
+samtools view -Sb -o skin_alignment_final_BAM skin_alignment_final.sam 
+
+bwa mem -t16 index_final_assembly /data/andrew/reads_corrected/tuco_spleen.1.cor.fq /data/andrew/reads_corrected/tuco_spleen.2.cor.fq > spleen_alignment_final.sam
+samtools view -Sb -o spleen_alignment_final_BAM spleen_alignment_final.sam 
+
+bwa mem -t16 index_final_assembly /data/andrew/reads_corrected/tuco_testes.1.cor.fq /data/andrew/reads_corrected/tuco_testes.2.cor.fq > testes_alignment_final.sam
+samtools view -Sb -o testes_alignment_final_BAM testes_alignment_final.sam 
+
+samtools flagstat hippocampus_alignment_final_BAM
+samtools flagstat hypothalamus_alignment_final_BAM
+samtools flagstat kidney_alignment_final_BAM
+samtools flagstat liver_alignment_final_BAM
+samtools flagstat ovary_alignment_final_BAM
+samtools flagstat skin_alignment_final_BAM
+samtools flagstat spleen_alignment_final_BAM
+samtools flagstat testes_alignment_final_BAM
+
+____________________________________________________________________________________________________________
+#Mapping each readset to annotation.only assembly to compare mappings once non-annotated transcripts are removed
+
+bwa index -p index_annotated_only /data/andrew/tuco_final_assembly/assembly_trimmed/tuco_final_assembly_annotation_only.fasta
+
+bwa mem -t16 index_annotated_only /data/andrew/reads_corrected/tuco_hippocampus.1.cor.fq.gz /data/andrew/reads_corrected/tuco_hippocampus.2.cor.fq.gz > hippocampus_alignment_annotation_only.sam
+samtools view -Sb -o hippocampus_alignment_annotation_only_BAM hippocampus_alignment_annotation_only.sam 
+
+bwa mem -t16 index_annotated_only /data/andrew/reads_corrected/tuco_hypothalamus.1.cor.fq.gz /data/andrew/reads_corrected/tuco_hypothalamus.2.cor.fq.gz > hypothalamus_alignment_annotation_only.sam
+samtools view -Sb -o hypothalamus_alignment_annotation_only_BAM hypothalamus_alignment_annotation_only.sam 
+
+bwa mem -t16 index_annotated_only /data/andrew/reads_corrected/tuco_kidney.1.cor.fq.gz /data/andrew/reads_corrected/tuco_kidney.2.cor.fq.gz > kidney_alignment_annotation_only.sam
+samtools view -Sb -o kidney_alignment_annotation_only_BAM kidney_alignment_annotation_only.sam 
+
+bwa mem -t16 index_annotated_only /data/andrew/reads_corrected/tuco_liver.1.cor.fq.gz /data/andrew/reads_corrected/tuco_liver.2.cor.fq.gz > liver_alignment_annotation_only.sam
+samtools view -Sb -o liver_alignment_annotation_only_BAM liver_alignment_annotation_only.sam 
+
+bwa mem -t16 index_annotated_only /data/andrew/reads_corrected/tuco_ovary.1.cor.fq.gz /data/andrew/reads_corrected/tuco_ovary.2.cor.fq.gz > ovary_alignment_annotation_only.sam
+samtools view -Sb -o ovary_alignment_annotation_only_BAM ovary_alignment_annotation_only.sam 
+
+bwa mem -t16 index_annotated_only /data/andrew/reads_corrected/tuco_skin.1.cor.fq.gz /data/andrew/reads_corrected/tuco_skin.2.cor.fq.gz > skin_alignment_annotation_only.sam
+samtools view -Sb -o skin_alignment_annotation_only_BAM skin_alignment_annotation_only.sam 
+
+bwa mem -t16 index_annotated_only /data/andrew/reads_corrected/tuco_spleen.1.cor.fq.gz /data/andrew/reads_corrected/tuco_spleen.2.cor.fq.gz > spleen_alignment_annotation_only.sam
+samtools view -Sb -o spleen_alignment_annotation_only_BAM spleen_alignment_annotation_only.sam 
+
+bwa mem -t16 index_annotated_only /data/andrew/reads_corrected/tuco_testes.1.cor.fq.gz /data/andrew/reads_corrected/tuco_testes.2.cor.fq.gz > testes_alignment_annotation_only.sam
+samtools view -Sb -o testes_alignment_annotation_only_BAM testes_alignment_annotation_only.sam 
+
+samtools flagstat hippocampus_alignment_annotation_only_BAM
+samtools flagstat hypothalamus_alignment_annotation_only_BAM
+samtools flagstat kidney_alignment_annotation_only_BAM
+samtools flagstat liver_alignment_annotation_only_BAM
+samtools flagstat ovary_alignment_annotation_only_BAM
+samtools flagstat skin_alignment_annotation_only_BAM
+samtools flagstat spleen_alignment_annotation_only_BAM
+samtools flagstat testes_alignment_annotation_only_BAM
+
