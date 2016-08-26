@@ -1,0 +1,65 @@
+-------------------------------------------------------------------------------------------------------
+#Obtain Readfiles
+
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_hippocampus.1.fq
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_hippocampus.2.fq
+
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_hypothalamus.1.fq
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_hypothalamus.2.fq
+
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_liver.1.fq
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_liver.2.fq
+
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_spleen.1.fq
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_spleen.2.fq
+
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_ovary.1.fq
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_ovary.2.fq
+
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_testes.1.fq
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_testes.2.fq
+
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_skin.1.fq
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_skin.2.fq
+
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_kidney.1.fq
+curl -LO https://s3.amazonaws.com/broad_tuco/tuco_kidney.2.fq
+
+-------------------------------------------------------------------------------------------------------
+#Quality check reads
+
+/data/andrew/SolexaQA/SolexaQA++ analysis /data/andrew/reads/tuco_hippocampus.1.fq /data/andrew/reads/tuco_hippocampus.2.fq
+
+/data/andrew/SolexaQA/SolexaQA++ analysis /data/andrew/reads/tuco_hypothalamus.1.fq /data/andrew/reads/tuco_hypothalamus.2.fq
+
+/data/andrew/SolexaQA/SolexaQA++ analysis /data/andrew/reads/tuco_kidney.1.fq /data/andrew/reads/tuco_kidney.2.fq
+
+/data/andrew/SolexaQA/SolexaQA++ analysis /data/andrew/reads/tuco_liver.1.fq /data/andrew/reads/tuco_liver.2.fq
+
+/data/andrew/SolexaQA/SolexaQA++ analysis /data/andrew/reads/tuco_ovary.1.fq /data/andrew/reads/tuco_ovary.2.fq
+
+/data/andrew/SolexaQA/SolexaQA++ analysis /data/andrew/reads/tuco_skin.1.fq /data/andrew/reads/tuco_skin.2.fq
+
+/data/andrew/SolexaQA/SolexaQA++ analysis /data/andrew/reads/tuco_spleen.1.fq /data/andrew/reads/tuco_spleen.2.fq
+
+/data/andrew/SolexaQA/SolexaQA++ analysis /data/andrew/reads/tuco_testes.1.fq /data/andrew/reads/tuco_testes.2.fq
+
+-------------------------------------------------------------------------------------------------------
+#Error Correct Reads
+
+perl /opt/Rcorrector/run_rcorrector.pl -t 16 -k 25 -1 /data/andrew/reads/tuco_hippocampus.1.fq -2 /data/andrew/reads/tuco_hippocampus.2.fq
+
+perl /opt/Rcorrector/run_rcorrector.pl -t 16 -k 25 -1 /data/andrew/reads/tuco_hypothalamus.1.fq -2 /data/andrew/reads/tuco_hypothalamus.2.fq
+
+perl /opt/Rcorrector/run_rcorrector.pl -t 16 -k 25 -1 /data/andrew/reads/tuco_kidney.1.fq -2 /data/andrew/reads/tuco_kidney.2.fq
+
+perl /opt/Rcorrector/run_rcorrector.pl -t 16 -k 25 -1 /data/andrew/reads/tuco_liver.1.fq -2 /data/andrew/reads/tuco_liver.2.fq
+
+perl /opt/Rcorrector/run_rcorrector.pl -t 16 -k 25 -1 /data/andrew/reads/tuco_ovary.1.fq -2 /data/andrew/reads/tuco_ovary.2.fq
+
+perl /opt/Rcorrector/run_rcorrector.pl -t 16 -k 25 -1 /data/andrew/reads/tuco_skin.1.fq -2 /data/andrew/reads/tuco_skin.2.fq
+
+perl /opt/Rcorrector/run_rcorrector.pl -t 16 -k 25 -1 /data/andrew/reads/tuco_spleen.1.fq -2 /data/andrew/reads/tuco_spleen.2.fq
+
+perl /opt/Rcorrector/run_rcorrector.pl -t 16 -k 25 -1 /data/andrew/reads/tuco_testes.1.fq -2 /data/andrew/reads/tuco_testes.2.fq
+
