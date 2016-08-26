@@ -1,0 +1,10 @@
+#Transrate Merging of non-normalized individual tissue transcriptomes and BUSCO analysis
+
+/opt/transrate-1.0.3-linux-x86_64/transrate -a /data/andrew/individual_assemblies/tuco_hippocampus.assembly.trinity.Trinity.fasta,/data/andrew/individual_assemblies/tuco_hypothalamus.assembly.trinity.Trinity.fasta,/data/andrew/individual_assemblies/tuco_kidney.assembly.trinity.Trinity.fasta,/data/andrew/individual_assemblies/tuco_liver.assembly.trinity.Trinity.fasta,/data/andrew/individual_assemblies/tuco_ovary.assembly.trinity.Trinity.fasta,/data/andrew/individual_assemblies/tuco_skin.assembly.trinity.Trinity.fasta,/data/andrew/individual_assemblies/tuco_spleen.assembly.trinity.Trinity.fasta,/data/andrew/individual_assemblies/tuco_testes.assembly.trinity.Trinity.fasta \
+-m /data/andrew/merged_assembly/tuco_merged.transrate \
+--left /data/andrew/reads_corrected/tuco_hippocampus.1.cor.fq.gz,/data/andrew/reads_corrected/tuco_hypothalamus.1.cor.fq.gz,/data/andrew/reads_corrected/tuco_kidney.1.cor.fq.gz,/data/andrew/reads_corrected/tuco_liver.1.cor.fq.gz,/data/andrew/reads_corrected/tuco_ovary.1.cor.fq.gz,/data/andrew/reads_corrected/tuco_skin.1.cor.fq.gz,/data/andrew/reads_corrected/tuco_spleen.1.cor.fq.gz,/data/andrew/reads_corrected/tuco_testes.1.cor.fq.gz \
+--right /data/andrew/reads_corrected/tuco_hippocampus.2.cor.fq.gz,/data/andrew/reads_corrected/tuco_hypothalamus.2.cor.fq.gz,/data/andrew/reads_corrected/tuco_kidney.2.cor.fq.gz,/data/andrew/reads_corrected/tuco_liver.2.cor.fq.gz,/data/andrew/reads_corrected/tuco_ovary.2.cor.fq.gz,/data/andrew/reads_corrected/tuco_skin.2.cor.fq.gz,/data/andrew/reads_corrected/tuco_spleen.2.cor.fq.gz,/data/andrew/reads_corrected/tuco_testes.2.cor.fq.gz 
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/merged_assembly/tuco_merged.transrate.trimmed -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o transrate.merged.trimmed
+
+python3 /opt/BUSCO_v1.1b1/BUSCO_v1.1b1.py -in /data/andrew/merged_assembly/transrate_results/tuco_hippocampus.assembly.trinity.Trinity/good.tuco_merged.transrate.trimmed -m trans --cpu 16 -l /opt/BUSCO_v1.1b1/vertebrata -o good.transrate.merged.trimmed
